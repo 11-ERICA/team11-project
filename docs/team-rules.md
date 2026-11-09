@@ -5,3 +5,5 @@
 - **병합** · 리뷰어 모두의 승인을 받고 `blocking:` 사항이 모두 해결되면, 리뷰어 중 한 명이 `Create a merge commit` 방식으로 `main`에 병합한다. 병합 후 작업 브랜치를 삭제한다.
 - **브랜치 이름** · 새 기능은 `feat/<name>`, 오류 수정은 `fix/<name>`, 문서 작업은 `docs/<name>`, 설정 및 유지보수는 `chore/<name>`을 사용한다. 예시는 `feat/highlight-detection`, `fix/crop-margin`, `docs/team-rules`, `chore/setup-mkdocs`이다.
 - **AI 사용** · 모든 PR 본문에 `## AI use` 항목을 넣는다. AI를 사용했다면 활용한 작업과 팀원이 직접 확인한 내용을 적고, 사용하지 않았다면 `사용하지 않음`이라고 적는다.
+  사용한 도구 / 어느 파일·함수 / 어떻게 썼는지 / 직접 수정·확인한 부분에 대해 작성한다. 
+- **커밋 메시지 형식** · ex) docs: Add team rules
