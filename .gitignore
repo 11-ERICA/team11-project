@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -218,3 +219,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+=======
+
+.venv/
+>>>>>>> 7c5e1c1 (feat: create Scan2Study project structure and documentation)
+
+__pycache__/
+*.py[cod]
+.venv/
