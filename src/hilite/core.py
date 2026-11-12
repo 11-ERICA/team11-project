@@ -65,6 +65,21 @@ def crop_regions(image, boxes, margin=10):
 def make_review_sheet(crops, out_path):
     """Stack the cropped regions into one review image and save it.
 
-    TODO(yeojin1115-eng): write Args, Returns, Raises, Examples.
+    Args:
+        crops (list[PIL.Image.Image]): Images returned by ``crop_regions``.
+            They are stacked from top to bottom in the order provided.
+        out_path (str): Path to the output image file.
+
+    Returns:
+        str: The path to the saved review image.
+
+    Raises:
+        ValueError: If ``crops`` is empty.
+        OSError: If the review image cannot be saved.
+
+    Examples:
+        >>> crops = crop_regions(enhanced_image, [(50, 100, 400, 140)])
+        >>> make_review_sheet(crops, "review_sheet.png")
+        'review_sheet.png'
     """
     raise NotImplementedError
