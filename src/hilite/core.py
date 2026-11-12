@@ -29,7 +29,7 @@ def find_highlights(image):
         image (PIL.Image.Image): The original color image to analyze.
 
     Returns:
-       boxes (list[tuple[int, int, int, int]]): A list of bounding boxes in
+        boxes (list[tuple[int, int, int, int]]): A list of bounding boxes in
             (left, top, right, bottom) pixel coordinates. The boxes
             are sorted from top to bottom and then from left to right.
             Returns an empty list if no highlighted regions are found.
