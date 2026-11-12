@@ -40,9 +40,28 @@ def enhance_document(image):
 def crop_regions(image, boxes, margin=10):
     """Cut the highlighted regions out of the enhanced image.
 
-    TODO(songsongjiwoo): write Args, Returns, Raises, Examples.
+    Args:
+        image (PIL.Image.Image): The enhanced document image.
+        boxes (list[tuple[int, int, int, int]]): Highlighted regions as
+            (left, top, right, bottom) pixel coordinates, in the order
+            they appear in the original photo.
+        margin (int): Extra pixels kept around each region so the text
+            is not cut off. Must be 0 or more. Defaults to 10.
+
+    Returns:
+        list[PIL.Image.Image]: One cropped image per box, in the same
+            order as ``boxes``.
+
+    Raises:
+        ValueError: If ``margin`` is negative or a box is outside the image.
+
+    Examples:
+        >>> crops = crop_regions(image, [(50, 100, 400, 140)])
+        >>> len(crops)
+        1
     """
     raise NotImplementedError
+
 
 
 def make_review_sheet(crops, out_path):
