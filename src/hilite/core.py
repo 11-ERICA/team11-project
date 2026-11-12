@@ -49,7 +49,7 @@ def crop_regions(image, boxes, margin=10):
             is not cut off. Must be 0 or more. Defaults to 10.
 
     Returns:
-        list[PIL.Image.Image]: One cropped image per box, in the same
+        crops(list[PIL.Image.Image]): One cropped image per box, in the same
             order as ``boxes``.
 
     Raises:
