@@ -21,12 +21,29 @@ def load_image(path):
     raise NotImplementedError
 
 
+
 def find_highlights(image):
     """Find yellow highlighted regions in the original photo.
 
-    TODO(oblgudei-spec): write Args, Returns, Raises, Examples.
+    Args:
+        image (PIL.Image.Image): The original color image to analyze.
+
+    Returns:
+        list[tuple[int, int, int, int]]: A list of bounding boxes in
+            (left, top, right, bottom) pixel coordinates. The boxes
+            are sorted from top to bottom and then from left to right.
+            Returns an empty list if no highlighted regions are found.
+
+    Raises:
+        ValueError: If the input image is not a color image.
+
+    Examples:
+        >>> boxes = find_highlights(image)
+        >>> len(boxes)
+        2
     """
     raise NotImplementedError
+
 
 
 def enhance_document(image):
