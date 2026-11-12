@@ -1,4 +1,21 @@
+
 """Core functions for Scan2Study."""
+
+
+def load_image(file_path: str):
+    """Load an image from the given file path.
+
+    Args:
+        file_path (str): Path to the image file.
+
+    Returns:
+        Image: Loaded image object.
+
+    Raises:
+        FileNotFoundError: If the image file does not exist.
+        ValueError: If the file format is unsupported.
+    """
+    raise NotImplementedError
 
 
 def extract_text(file_path: str) -> str:
