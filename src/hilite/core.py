@@ -8,7 +8,7 @@ def load_image(path):
         path (str): Path to the image file.
 
     Returns:
-        PIL.Image.Image: The image in RGB color.
+        image (PIL.Image.Image): The image in RGB color.
 
     Raises:
         FileNotFoundError: If the image file does not exist.
@@ -29,7 +29,7 @@ def find_highlights(image):
         image (PIL.Image.Image): The original color image to analyze.
 
     Returns:
-        list[tuple[int, int, int, int]]: A list of bounding boxes in
+        boxes (list[tuple[int, int, int, int]]): A list of bounding boxes in
             (left, top, right, bottom) pixel coordinates. The boxes
             are sorted from top to bottom and then from left to right.
             Returns an empty list if no highlighted regions are found.
@@ -54,7 +54,7 @@ def enhance_document(image):
             ``load_image``.
 
     Returns:
-        PIL.Image.Image: A new image with adjusted brightness and
+        enhanced (PIL.Image.Image): A new image with adjusted brightness and
             contrast. It has the same size as ``image``. The input image
             is not changed.
 
@@ -102,7 +102,7 @@ def make_review_sheet(crops, out_path):
         out_path (str): Path to the output image file.
 
     Returns:
-        str: The path to the saved review image.
+        path (str): The path to the saved review image.
 
     Raises:
         ValueError: If ``crops`` is empty.
