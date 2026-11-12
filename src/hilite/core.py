@@ -4,7 +4,19 @@
 def load_image(path):
     """Load a photo of notes as a color image.
 
-    TODO(Usukhjargal111): write Args, Returns, Raises, Examples.
+    Args:
+        path (str): Path to the image file.
+
+    Returns:
+        PIL.Image.Image: The image in RGB color.
+
+    Raises:
+        FileNotFoundError: If the image file does not exist.
+        ValueError: If the image cannot be opened.
+
+    Examples:
+        >>> load_image("examples/lecture_notes.jpg").mode
+        'RGB'
     """
     raise NotImplementedError
 
