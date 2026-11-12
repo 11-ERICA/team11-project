@@ -1,0 +1,17 @@
+site_name: hilite
+site_url: https://11-erica.github.io/team11-project
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Proposal: proposal.md
+  - Team rules: team-rules.md
+  - API: api.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
