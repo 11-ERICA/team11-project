@@ -49,7 +49,19 @@ def find_highlights(image):
 def enhance_document(image):
     """Adjust brightness and contrast so the text is easier to read.
 
-    TODO(yj-min-i): write Args, Returns, Raises, Examples.
+    Args:
+        image (PIL.Image.Image): The original color photo from
+            ``load_image``.
+
+    Returns:
+        PIL.Image.Image: A new image with adjusted brightness and
+            contrast. It has the same size as ``image``. The input image
+            is not changed.
+
+    Examples:
+        >>> photo = load_image("examples/lecture_notes.jpg")  # 800 x 600
+        >>> enhance_document(photo).size
+        (800, 600)
     """
     raise NotImplementedError
 
