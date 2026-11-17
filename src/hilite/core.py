@@ -89,7 +89,27 @@ def crop_regions(image, boxes, margin=10):
         >>> len(crops)
         1
     """
-    raise NotImplementedError
+    if margin < 0:
+        raise ValueError(f"margin must be 0 or more, got {margin}")
+
+    width, height = image.size
+    crops = []
+    for box in boxes:
+        left, top, right, bottom = box
+        if left < 0 or top < 0 or right > width or bottom > height:
+            raise ValueError(f"box {box} is outside the image size {image.size}")
+        if left >= right or top >= bottom:
+            raise ValueError(f"box {box} has no area")
+
+        # Add the margin, but never go past the image edges.
+        crop_box = (
+            max(0, left - margin),
+            max(0, top - margin),
+            min(width, right + margin),
+            min(height, bottom + margin),
+        )
+        crops.append(image.crop(crop_box))
+    return crops
 
 
 
