@@ -82,7 +82,8 @@ def crop_regions(image, boxes, margin=10):
             order as ``boxes``.
 
     Raises:
-        ValueError: If ``margin`` is negative or a box is outside the image.
+       If `margin` is negative, a box is outside the image,
+or a box has no area.
 
     Examples:
         >>> crops = crop_regions(image, [(50, 100, 400, 140)])
