@@ -1,5 +1,6 @@
 """Core functions of hilite. Docstrings first; code comes in Week 11."""
 
+from PIL import Image
 
 def load_image(path):
     """Load a photo of notes as a color image.
@@ -134,4 +135,17 @@ def make_review_sheet(crops, out_path):
         >>> make_review_sheet(crops, "review_sheet.png")
         'review_sheet.png'
     """
-    raise NotImplementedError
+    if not crops:
+        raise ValueError("crops must not be empty")
+
+    width = max(crop.width for crop in crops)
+    height = sum(crop.height for crop in crops)
+    sheet = Image.new("RGB", (width, height), "white")
+
+    y = 0
+    for crop in crops:
+        sheet.paste(crop, (0, y))
+        y += crop.height
+
+    sheet.save(out_path)
+    return str(out_path)
