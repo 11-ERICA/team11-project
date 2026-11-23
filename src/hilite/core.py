@@ -30,7 +30,76 @@ def find_highlights(image):
         >>> len(boxes)
         2
     """
-    raise NotImplementedError
+
+    if image.mode not in ("RGB", "RGBA", "P", "CMYK"):
+        raise ValueError("Input image must be a color image.")
+
+    image = image.convert("RGB")
+    width, height = image.size
+    pixels = image.load()
+
+    # Create a mask for yellow highlight pixels.
+    mask = bytearray(width * height)
+
+    for y in range(height):
+        for x in range(width):
+            r, g, b = pixels[x, y]
+
+            if (
+                r >= 160
+                and g >= 140
+                and b <= 150
+                and r > b * 1.25
+                and g > b * 1.15
+            ):
+                mask[y * width + x] = 1
+
+    # Find connected yellow regions.
+    visited = bytearray(width * height)
+    boxes = []
+    min_area = max(8, int(width * height * 0.000005))
+
+    for start in range(width * height):
+        if not mask[start] or visited[start]:
+            continue
+
+        queue = [start]
+        visited[start] = 1
+        min_x = max_x = start % width
+        min_y = max_y = start // width
+        area = 0
+
+        while queue:
+            current = queue.pop()
+            x = current % width
+            y = current // width
+            area += 1
+
+            min_x = min(min_x, x)
+            max_x = max(max_x, x)
+            min_y = min(min_y, y)
+            max_y = max(max_y, y)
+
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    nx = x + dx
+                    ny = y + dy
+
+                    if 0 <= nx < width and 0 <= ny < height:
+                        neighbor = ny * width + nx
+
+                        if mask[neighbor] and not visited[neighbor]:
+                            visited[neighbor] = 1
+                            queue.append(neighbor)
+
+        if area >= min_area:
+            boxes.append((min_x, min_y, max_x + 1, max_y + 1))
+
+    # Sort regions from top to bottom, then left to right.
+    boxes.sort(key=lambda box: (box[1], box[0]))
+
+    return boxes
+
 
 
 
