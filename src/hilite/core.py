@@ -1,6 +1,7 @@
 """Core functions of hilite. Docstrings first; code comes in Week 11."""
 
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageOps
+
 
 def load_image(path):
     """Load a photo of notes as a color image.
@@ -64,7 +65,14 @@ def enhance_document(image):
         >>> enhance_document(photo).size
         (800, 600)
     """
-    raise NotImplementedError
+    # Work on an RGB copy so the input image is not changed.
+    rgb = image.convert("RGB")
+    # Stretch the darkest and brightest 1% to the full range.
+    # preserve_tone keeps the colors, so yellow highlights stay yellow.
+    stretched = ImageOps.autocontrast(rgb, cutoff=1, preserve_tone=True)
+    # Add a little more contrast so the text stands out.
+    enhanced = ImageEnhance.Contrast(stretched).enhance(1.2)
+    return enhanced
 
 
 def crop_regions(image, boxes, margin=10):
