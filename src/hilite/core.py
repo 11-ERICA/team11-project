@@ -87,12 +87,12 @@ def crop_regions(image, boxes, margin=10):
             is not cut off. Must be 0 or more. Defaults to 10.
 
     Returns:
-        crops(list[PIL.Image.Image]): One cropped image per box, in the same
+        crops (list[PIL.Image.Image]): One cropped image per box, in the same
             order as ``boxes``.
 
     Raises:
-       If `margin` is negative, a box is outside the image,
-or a box has no area.
+        ValueError: If ``margin`` is negative, a box is outside the image,
+            or a box has no area.
 
     Examples:
         >>> crops = crop_regions(image, [(50, 100, 400, 140)])
