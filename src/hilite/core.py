@@ -20,8 +20,15 @@ def load_image(path):
         >>> load_image("examples/lecture_notes.jpg").mode
         'RGB'
     """
-    raise NotImplementedError
+    try:
+        with Image.open(path) as img:
+            return img.convert("RGB")
 
+    except FileNotFoundError:
+        raise
+
+    except (OSError, ValueError) as e:
+        raise ValueError(f"Cannot open image: {path}") from e
 
 
 def find_highlights(image):
