@@ -15,7 +15,7 @@
 
 자세한 기획은 [docs/proposal.md](https://github.com/11-ERICA/team11-project/blob/main/docs/proposal.md)에 있습니다.
 
-### 2. Installation
+## 2. Installation
 
 Python 3.10 이상이 필요합니다.
 
@@ -45,6 +45,7 @@ from hilite import load_image, find_highlights, enhance_document, crop_regions, 
 image = load_image("notes.jpg")            # 형광펜 표시가 있는 컬러 사진
 boxes = find_highlights(image)             # [(left, top, right, bottom), ...] 위→아래 순서
 clean = enhance_document(image)            # 원본과 같은 크기의 보정본
+clean.save("enhanced.png")                 # 보정한 전체 문서 저장
 crops = crop_regions(clean, boxes, margin=10)
 make_review_sheet(crops, "review.png")     # 형광펜 부분을 모은 복습용 이미지 저장
 ```
@@ -69,6 +70,8 @@ pytest
 모든 테스트가 통과하면 마지막 줄에 `N passed`가 나옵니다. 테스트용 이미지는 코드 안에서 만들고, 파일은 pytest가 만드는 임시 폴더에만 저장하므로 저장소에 새 파일이 생기지 않습니다.
 
 함수를 새로 구현하거나 고칠 때는 같은 PR에서 `tests/test_core.py`에 테스트를 추가합니다. docstring의 Examples·Raises 항목마다 테스트를 하나씩 두는 것이 기준입니다.
+
+PR을 올리거나 main에 push하면 GitHub Actions(`.github/workflows/tests.yml`)가 같은 테스트를 자동으로 실행하고, 결과는 PR 아래 Checks에 표시됩니다.
 
 ## 6. Documentation
 
