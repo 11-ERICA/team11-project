@@ -59,7 +59,16 @@ make_review_sheet(crops, "review.png")     # 형광펜 부분을 모은 복습�
 
 ## 5. Tests
 
-TODO (later in this course)
+테스트는 [pytest](https://docs.pytest.org/)로 작성했고 `tests/` 폴더에 있습니다. 저장소를 내려받은 뒤, 저장소 루트에서 아래 두 명령을 실행합니다.
+
+```bash
+pip install -e . pytest
+pytest
+```
+
+모든 테스트가 통과하면 마지막 줄에 `N passed`가 나옵니다. 테스트용 이미지는 코드 안에서 만들고, 파일은 pytest가 만드는 임시 폴더에만 저장하므로 저장소에 새 파일이 생기지 않습니다.
+
+함수를 새로 구현하거나 고칠 때는 같은 PR에서 `tests/test_core.py`에 테스트를 추가합니다. docstring의 Examples·Raises 항목마다 테스트를 하나씩 두는 것이 기준입니다.
 
 ## 6. Documentation
 
