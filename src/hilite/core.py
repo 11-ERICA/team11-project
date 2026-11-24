@@ -1,4 +1,4 @@
-"""Core functions of hilite. Docstrings first; code comes in Week 11."""
+"""Core functions of hilite."""
 
 from PIL import Image, ImageEnhance, ImageOps
 
