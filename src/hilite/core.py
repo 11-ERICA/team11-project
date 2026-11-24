@@ -22,14 +22,14 @@ def load_image(path):
     """
     try:
         with Image.open(path) as img:
-            return img.convert("RGB")
+            return ImageOps.exif_transpose(img).convert("RGB")
 
     except FileNotFoundError:
         raise
 
     except (OSError, ValueError) as e:
         raise ValueError(f"Cannot open image: {path}") from e
-
+    
 
 def find_highlights(image):
     """Find yellow highlighted regions in the original photo.
