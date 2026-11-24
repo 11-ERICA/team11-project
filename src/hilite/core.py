@@ -88,28 +88,20 @@ def find_highlights(image):
                     if 0 <= nx < width and 0 <= ny < height:
                         neighbor = ny * width + nx
 
-                        if mask[neighbor] and not visited[neighbor]:
-                            visited[neighbor] = 1
-                            queue.append(neighbor)
+    rows = []
 
-        if area >= min_area:
-            boxes.append((min_x, min_y, max_x + 1, max_y + 1))
+    for box in sorted(boxes, key=lambda box: (box[1] + box[3]) / 2):
+        center_y = (box[1] + box[3]) / 2
 
-    # Group regions by vertical center, then sort each row left to right.
-rows = []
+        if rows and rows[-1][0] <= center_y <= rows[-1][1]:
+            rows[-1][2].append(box)
+            rows[-1][1] = max(rows[-1][1], box[3])
+        else:
+            rows.append([box[1], box[3], [box]])
 
-for box in sorted(boxes, key=lambda box: (box[1] + box[3]) / 2):
-    center_y = (box[1] + box[3]) / 2
-
-    if rows and rows[-1][0] <= center_y <= rows[-1][1]:
-        rows[-1][2].append(box)
-        rows[-1][1] = max(rows[-1][1], box[3])
-    else:
-        rows.append([box[1], box[3], [box]])
-
-boxes = []
-for row in rows:
-    boxes.extend(sorted(row[2], key=lambda box: box[0]))
+    boxes = []
+    for row in rows:
+        boxes.extend(sorted(row[2], key=lambda box: box[0]))
 
     return boxes
 
